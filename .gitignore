@@ -1,0 +1,9 @@
+# Ignore .NET build results
+bin/
+obj/
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore user secrets
+secrets/
