@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore; // Required for UseSqlServer
 using api.Data;
 using api.Interfaces;
 using api.Repository;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,11 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 });
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddControllers()
+.AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
