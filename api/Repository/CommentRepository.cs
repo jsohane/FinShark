@@ -43,9 +43,9 @@ namespace api.Repository
             return await _context.Comments.ToListAsync();
         }
 
-        public Task<Comment?> GetByIdAsync(int id)
+        public async Task<Comment?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Comment?> UpdateAsync(int id, Comment commentModel)
